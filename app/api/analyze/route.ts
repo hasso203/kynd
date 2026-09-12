@@ -1,0 +1,87 @@
+import Anthropic from "@anthropic-ai/sdk";
+
+const anthropic = new Anthropic({
+  apiKey: process.env.ANTHROPIC_API_KEY,
+});
+
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+    const story = body.story;
+
+    if (!story || typeof story !== "string") {
+      return Response.json(
+        { error: "Please describe what is happening." },
+        { status: 400 }
+      );
+    }
+
+    const message = await anthropic.messages.create({
+      model: "claude-opus-4-6",
+      max_tokens: 1200,
+      messages: [
+        {
+          role: "user",
+          content: `
+You are the analysis engine for KYND, a Kentucky assistance navigator.
+
+Analyze the person's situation below.
+
+Return ONLY valid JSON. Do not include markdown or commentary.
+
+Use this exact structure:
+
+{
+  "facts": {
+    "age": number or null,
+    "county": string or null,
+    "household_size": number or null,
+    "monthly_income": number or null
+  },
+  "issues": [
+    {
+      "type": string,
+      "urgency": number,
+      "summary": string
+    }
+  ],
+  "summary": string
+}
+
+Urgency must be from 1 to 100, where 100 means immediate danger or crisis.
+
+Do not determine official eligibility for any government program.
+Only extract facts and identify the person's needs.
+
+Person's situation:
+
+${story}
+          `,
+        },
+      ],
+    });
+
+    const firstBlock = message.content[0];
+
+    if (firstBlock.type !== "text") {
+      throw new Error("Claude did not return text.");
+    }
+
+    const cleaned = firstBlock.text
+  .replace(/^```json\s*/i, "")
+  .replace(/^```\s*/i, "")
+  .replace(/```$/i, "")
+  .trim();
+
+const result = JSON.parse(cleaned);
+
+    return Response.json(result);
+  } catch (error) {
+    console.error("KYND analyze error:", error);
+
+    return Response.json(
+      { error: "KYND could not analyze the situation." },
+      { status: 500 }
+    );
+  }
+}
