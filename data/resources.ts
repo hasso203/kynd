@@ -4,6 +4,9 @@ export const resources = {
     description:
       "LIHEAP helps eligible Kentucky households with home energy costs.",
     action: "Apply through your local Community Action Agency.",
+    prepare: "Your most recent electric bill and proof of household income from the previous month.",
+say: "I need help paying my electric bill and would like to ask about energy assistance.",
+phone: "1-800-456-3452",
     url: "https://www.capky.org/",
   },
 
