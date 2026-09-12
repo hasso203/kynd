@@ -6,6 +6,12 @@ type Result = {
   type: string;
   urgency: number;
   summary: string;
+  resource: {
+    name: string;
+    description: string;
+    action: string;
+    url: string;
+  } | null;
 };
 
 export default function Home() {
@@ -96,7 +102,22 @@ export default function Home() {
 
                 <p className="mt-3 text-slate-300">{result.summary}</p>
 
-                
+                {result.resource && (
+  <div>
+    <p>
+      <strong>{result.resource.name}</strong>
+    </p>
+    <p>{result.resource.description}</p>
+    <p>{result.resource.action}</p>
+    <a
+      href={result.resource.url}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Go to official resource →
+    </a>
+  </div>
+)}
               </div>
             ))}
           </div>

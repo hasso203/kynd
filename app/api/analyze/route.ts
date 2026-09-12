@@ -1,5 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk";
-
+import { resources } from "../../../data/resources";
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
@@ -76,8 +76,14 @@ ${story}
   .trim();
 
 const result = JSON.parse(cleaned);
-
-    return Response.json(result);
+const issuesWithResources = result.issues.map((issue: any) => ({
+  ...issue,
+  resource: resources[issue.type as keyof typeof resources] ?? null,
+}));
+    return Response.json({
+  ...result,
+  issues: issuesWithResources,
+});
   } catch (error) {
     console.error("KYND analyze error:", error);
 
