@@ -39,4 +39,8 @@ export const medicalTransportationByCounty = {
     provider: "Sandy Valley Transportation Services",
     phone: "1-800-444-7433",
   },
+  Jefferson: {
+  provider: "Federated Transportation Services of the Bluegrass",
+  phone: "1-888-848-0989",
+},
 };

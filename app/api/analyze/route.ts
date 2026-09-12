@@ -87,19 +87,22 @@ const issuesWithResources = result.issues.map((issue: any) => {
   const resource =
     resources[issue.type as keyof typeof resources] ?? null;
 
-  if (
-    issue.type === "medical_transportation" &&
-    result.facts.county === "Pike"
-  ) {
+  if (issue.type === "medical_transportation" && result.facts.county) {
+  const countyResource =
+    medicalTransportationByCounty[
+      result.facts.county as keyof typeof medicalTransportationByCounty
+    ];
+
+  if (countyResource) {
     return {
       ...issue,
       resource: {
         ...resource,
-        ...medicalTransportationByCounty.Pike,
+        ...countyResource,
       },
     };
   }
-
+  }
   return {
     ...issue,
     resource,
