@@ -120,6 +120,17 @@ const issuesWithResources = result.issues.map((issue: any) => {
     };
   }
 }
+if (
+  (issue.type === "medical_transportation" ||
+    issue.type === "utility_assistance") &&
+  !result.facts.county
+) {
+  return {
+    ...issue,
+    needsCounty: true,
+    resource,
+  };
+}
   return {
     ...issue,
     resource,
