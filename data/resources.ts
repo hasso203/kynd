@@ -35,6 +35,21 @@ phone: "1-855-306-8959",
   source: "Kentucky Housing Corporation",
 verified: "2026-09-12",
 },
+employment_assistance: {
+  name: "Kentucky Career Center",
+  description:
+    "Kentucky Career Center helps job seekers with job searches, resumes, interviews, training, and employment services.",
+  action:
+    "Contact Kentucky Career Center or visit a local career center for job-search and employment assistance.",
+  prepare:
+    "Have your work history, resume if you have one, and the types of jobs you are looking for.",
+  say:
+    "I need help finding a job and would like assistance with my job search.",
+  phone: "502-564-0871",
+  url: "https://kcc.ky.gov/career/employment-assistance/Pages/Resume-and-Job-Search.aspx",
+  source: "Kentucky Career Center",
+  verified: "2026-09-12",
+},
 medical_transportation: {
   name: "Kentucky Medicaid Medical Transportation",
   description:
