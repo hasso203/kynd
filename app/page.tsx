@@ -20,10 +20,7 @@ type Result = {
 };
 
 export default function Home() {
-  const [story, setStory] = useState(
-    "I'm 61 and live alone in Pike County. I'm behind on my electric bill, groceries are getting too expensive, and I'm having trouble paying for my prescriptions."
-  );
-
+  const [story, setStory] = useState("");
   const [results, setResults] = useState<Result[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -56,30 +53,37 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-slate-950 text-white px-6 py-12">
-      <div className="mx-auto w-full max-w-3xl">
+      <div className="mx-auto w-full max-w-4xl">
         <div className="mb-10">
-          <div className="text-5xl font-bold tracking-tight">KYND</div>
+          <div className="text-6xl font-bold tracking-tight">KYND</div>
 
-          <p className="mt-3 text-xl text-slate-300">
+          <p className="mt-3 text-2xl text-slate-300">
             Tell us what&apos;s happening. We&apos;ll tell you what to do next.
           </p>
         </div>
 
         <div className="rounded-2xl bg-white p-6 text-slate-900 shadow-2xl">
-          <label className="mb-3 block text-lg font-semibold">
+          <label className="mb-3 block text-2xl font-semibold">
             What&apos;s going on?
           </label>
 
           <textarea
             value={story}
+            placeholder= "Tell us what's happening. Use your own words."
             onChange={(e) => setStory(e.target.value)}
-            className="min-h-48 w-full resize-none rounded-xl border border-slate-300 p-4 text-lg outline-none focus:ring-2 focus:ring-blue-500"
+            className="min-h-48 w-full resize-none rounded-xl border border-slate-300 p-6 text-lg outline-none focus:ring-2 focus:ring-blue-500"
           />
+          <button
+  type="button"
+  className="mt-4 w-full rounded-xl border border-white/30 px-6 py-5 text-2xl font-semibold"
+>
+  🔊 READ THIS TO ME
+</button>
 
           <button
             onClick={findHelp}
             disabled={loading || story.trim().length === 0}
-            className="mt-5 w-full rounded-xl bg-blue-600 py-4 text-lg font-semibold text-white hover:bg-blue-700 disabled:opacity-50"
+            className="mt-5 w-full rounded-xl bg-blue-600 py-6 text-2xl font-semibold text-white hover:bg-blue-700 disabled:opacity-70"
           >
             {loading ? "Analyzing your situation..." : "Find Help →"}
           </button>
