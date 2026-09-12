@@ -11,6 +11,8 @@ type Result = {
     name: string;
     description: string;
     action: string;
+    prepare: string;
+    say: string;
     url: string;
   } | null;
 };
@@ -117,13 +119,28 @@ export default function Home() {
       <strong>{result.resource.name}</strong>
     </p>
     <p>{result.resource.description}</p>
-    <p>{result.resource.action}</p>
+    <div className="mt-6">
+  <h4 className="text-xl font-bold">WHAT TO DO NEXT</h4>
+  <p className="mt-2 text-lg">{result.resource.action}</p>
+  {result.resource.prepare && (
+  <p className="mt-4 text-lg">
+    <strong>Have this ready:</strong> {result.resource.prepare}
+  </p>
+)}
+
+{result.resource.say && (
+  <p className="mt-4 text-lg">
+    <strong>What to say:</strong> “{result.resource.say}”
+  </p>
+)}
+</div>
     <a
       href={result.resource.url}
       target="_blank"
       rel="noopener noreferrer"
+      className="mt-6 inline-block rounded-xl bg-white px-8 py-4 text-xl font-bold text-slate-950"
     >
-      Go to official resource →
+       MORE INFORMATION
     </a>
   </div>
 )}
