@@ -79,4 +79,8 @@ export const utilityAssistanceByCounty = {
     provider: "Louisville Metro Office of Social Services",
     phone: "502-991-8391",
   },
+  Pike: {
+  provider: "Big Sandy Area Community Action Program",
+  phone: "606-432-2775",
+},
 };
