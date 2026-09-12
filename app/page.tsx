@@ -92,16 +92,19 @@ export default function Home() {
         {results.length > 0 && (
           <div className="mt-10 space-y-5">
             <div>
-              <h2 className="text-3xl font-bold">Your KYND Plan</h2>
-              <p className="mt-2 text-slate-300">
+              <h2 className="text-5xl font-bold">Your KYND Plan</h2>
+              <p className="mt-3 text-2xl text-slate-200">
                 Based on what you told us, here&apos;s what to do next.
               </p>
             </div>
 
-            {results.map((result, index) => (
+            {[...results]
+  .sort((a, b) => b.urgency - a.urgency)
+  .slice(0, 1)
+  .map((result) => (
               <div
-                key={index}
-                className="rounded-2xl border border-slate-700 bg-slate-900 p-6"
+                key={result.type}
+                className="rounded-2xl border border-slate-700 bg-slate-900 p-8"
               >
                 <div className="text-sm font-bold tracking-wider text-blue-400">
                   {result.urgency >= 70
@@ -111,11 +114,11 @@ export default function Home() {
     : "Lower Priority"}
                 </div>
 
-                <h3 className="mt-2 text-2xl font-bold">
+                <h3 className="mt-2 text-4xl font-bold">
   {result.type.replaceAll("_", " ").replace(/\b\w/g, (letter) => letter.toUpperCase())}
 </h3>
 
-                <p className="mt-3 text-slate-300">{result.summary}</p> <p className="mt-2 text-sm text-slate-400">
+                <p className="mt-4 text-slate-300">{result.summary}</p> <p className="mt-4 text-sm text-slate-400">
   <strong>Why KYND suggested this:</strong> {result.evidence}
 </p>
 
@@ -126,7 +129,7 @@ export default function Home() {
     </p>
     <p>{result.resource.description}</p>
     <div className="mt-6">
-  <h4 className="text-xl font-bold">WHAT TO DO NEXT</h4>
+  <h4 className="text-2xl font-bold">WHAT TO DO NEXT</h4>
   <p className="mt-2 text-lg">{result.resource.action}</p>
   {result.resource.prepare && (
   <p className="mt-4 text-lg">
