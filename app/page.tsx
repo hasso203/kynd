@@ -42,6 +42,7 @@ export default function Home() {
     });
 
     const data = await response.json();
+    console.log("kynd api response:", data);
 
     if (!response.ok) {
       throw new Error(data.error || "Something went wrong.");
