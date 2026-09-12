@@ -32,6 +32,8 @@ phone: "1-855-306-8959",
     "I need help with my rent or housing and would like to know what assistance may be available.",
   phone: "1-800-633-8896",
   url: "https://www.kyhousing.org/page/rental-assistance-resources",
+  source: "Kentucky Housing Corporation",
+verified: "2026-09-12",
 },
 medical_transportation: {
   name: "Kentucky Medicaid Medical Transportation",

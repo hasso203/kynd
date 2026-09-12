@@ -16,6 +16,8 @@ type Result = {
     phone: string;
     provider: string;
     url: string;
+    source?: string;
+    verified?: string;
   } | null;
 };
 
@@ -166,7 +168,15 @@ export default function Home() {
     >
        MORE INFORMATION
     </a>
+
+    {result.resource.source && result.resource.verified && (
+  <p className="mt-4 text-sm text-slate-400">
+    Verified source: {result.resource.source} · {result.resource.verified}
+  </p>
+)}
+
   </div>
+  
 )}
 {currentResult < results.length - 1 && (
   <button
