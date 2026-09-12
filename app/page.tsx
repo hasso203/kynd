@@ -13,6 +13,8 @@ type Result = {
     action: string;
     prepare: string;
     say: string;
+    phone: string;
+    provider: string;
     url: string;
   } | null;
 };
@@ -132,6 +134,19 @@ export default function Home() {
   <p className="mt-4 text-lg">
     <strong>What to say:</strong> “{result.resource.say}”
   </p>
+)}
+{result.resource.provider && (
+  <p className="mt-4 text-lg">
+    <strong>Who to call:</strong> {result.resource.provider}
+  </p>
+)}
+{result.resource.phone && (
+  <a
+    href={`tel:${result.resource.phone}`}
+    className="mt-6 inline-block rounded-xl bg-white px-8 py-4 text-xl font-bold text-slate-950"
+  >
+    CALL NOW
+  </a>
 )}
 </div>
     <a

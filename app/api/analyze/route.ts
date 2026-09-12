@@ -1,5 +1,8 @@
 import Anthropic from "@anthropic-ai/sdk";
-import { resources } from "../../../data/resources";
+import {
+  resources,
+  medicalTransportationByCounty,
+} from "../../../data/resources";;
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
@@ -80,10 +83,28 @@ ${story}
   .trim();
 
 const result = JSON.parse(cleaned);
-const issuesWithResources = result.issues.map((issue: any) => ({
-  ...issue,
-  resource: resources[issue.type as keyof typeof resources] ?? null,
-}));
+const issuesWithResources = result.issues.map((issue: any) => {
+  const resource =
+    resources[issue.type as keyof typeof resources] ?? null;
+
+  if (
+    issue.type === "medical_transportation" &&
+    result.facts.county === "Pike"
+  ) {
+    return {
+      ...issue,
+      resource: {
+        ...resource,
+        ...medicalTransportationByCounty.Pike,
+      },
+    };
+  }
+
+  return {
+    ...issue,
+    resource,
+  };
+});
     return Response.json({
   ...result,
   issues: issuesWithResources,

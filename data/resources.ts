@@ -25,5 +25,12 @@ medical_transportation: {
 say:
   "I need help arranging transportation to a medical appointment.",
   url: "https://www.chfs.ky.gov/agencies/dms/member/Pages/Medical-Transportation.aspx",
+  phone: "1-800-444-7433",
 },
+};
+export const medicalTransportationByCounty = {
+  Pike: {
+    provider: "Sandy Valley Transportation Services",
+    phone: "1-800-444-7433",
+  },
 };
