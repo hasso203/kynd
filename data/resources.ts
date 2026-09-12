@@ -15,6 +15,9 @@ phone: "1-800-456-3452",
     description:
       "SNAP helps eligible Kentucky households buy food.",
     action: "Apply through kynect benefits.",
+    prepare: "Have identification, household income information, and recent bills or expenses available if you have them.",
+say: "I need help applying for food assistance and would like to ask about SNAP.",
+phone: "1-855-306-8959",
     url: "https://kynect.ky.gov/",
   },
 medical_transportation: {
