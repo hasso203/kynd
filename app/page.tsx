@@ -3,10 +3,9 @@
 import { useState } from "react";
 
 type Result = {
-  title: string;
-  urgency: string;
-  description: string;
-  actions: string[];
+  type: string;
+  urgency: number;
+  summary: string;
 };
 
 export default function Home() {
@@ -17,51 +16,32 @@ export default function Home() {
   const [results, setResults] = useState<Result[]>([]);
   const [loading, setLoading] = useState(false);
 
-  function findHelp() {
-    setLoading(true);
+ async function findHelp() {
+  setLoading(true);
 
-    setTimeout(() => {
-      setResults([
-        {
-          title: "Prevent your electricity from being disconnected",
-          urgency: "DO THIS FIRST",
-          description:
-            "You may qualify for emergency utility assistance through LIHEAP or your local Community Action Agency.",
-          actions: [
-            "Gather your utility bill",
-            "Gather your shutoff notice",
-            "Bring photo identification",
-            "Bring proof of household income",
-          ],
-        },
-        {
-          title: "Get help paying for groceries",
-          urgency: "NEXT",
-          description:
-            "You may qualify for Kentucky SNAP benefits based on your household situation and income.",
-          actions: [
-            "Gather identification",
-            "Gather income information",
-            "Gather housing and utility expenses",
-            "Start a kynect benefits application",
-          ],
-        },
-        {
-          title: "Lower your prescription costs",
-          urgency: "ALSO CONSIDER",
-          description:
-            "There may be prescription assistance programs that can reduce your out-of-pocket medication costs.",
-          actions: [
-            "Make a list of your prescriptions",
-            "Gather insurance information",
-            "Check Kentucky and manufacturer assistance programs",
-          ],
-        },
-      ]);
+  try {
+    const response = await fetch("/api/analyze", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ story }),
+    });
 
-      setLoading(false);
-    }, 900);
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Something went wrong.");
+    }
+
+    setResults(data.issues || []);
+  } catch (error) {
+    console.error("Find Help error:", error);
+    setResults([]);
+  } finally {
+    setLoading(false);
   }
+}
 
   return (
     <main className="min-h-screen bg-slate-950 text-white px-6 py-12">
@@ -112,19 +92,11 @@ export default function Home() {
                   {result.urgency}
                 </div>
 
-                <h3 className="mt-2 text-2xl font-bold">{result.title}</h3>
+                <h3 className="mt-2 text-2xl font-bold">{result.type}</h3>
 
-                <p className="mt-3 text-slate-300">{result.description}</p>
+                <p className="mt-3 text-slate-300">{result.summary}</p>
 
-                <div className="mt-5">
-                  <div className="font-semibold">What to do:</div>
-
-                  <ul className="mt-2 space-y-2 text-slate-300">
-                    {result.actions.map((action, actionIndex) => (
-                      <li key={actionIndex}>✓ {action}</li>
-                    ))}
-                  </ul>
-                </div>
+                
               </div>
             ))}
           </div>
