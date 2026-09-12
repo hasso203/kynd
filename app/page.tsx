@@ -159,6 +159,12 @@ export default function Home() {
     </a>
   </div>
 )}
+<button
+  onClick={() => setResults([])}
+  className="mt-4 block rounded-xl border border-white px-8 py-4 text-xl font-bold"
+>
+  GO BACK
+</button>
               </div>
             ))}
           </div>
