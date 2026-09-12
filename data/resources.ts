@@ -44,3 +44,9 @@ export const medicalTransportationByCounty = {
   phone: "1-888-848-0989",
 },
 };
+export const utilityAssistanceByCounty = {
+  Jefferson: {
+    provider: "Louisville Metro Office of Social Services",
+    phone: "502-991-8391",
+  },
+};

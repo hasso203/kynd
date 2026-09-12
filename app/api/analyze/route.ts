@@ -2,6 +2,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import {
   resources,
   medicalTransportationByCounty,
+  utilityAssistanceByCounty,
 } from "../../../data/resources";;
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -103,6 +104,22 @@ const issuesWithResources = result.issues.map((issue: any) => {
     };
   }
   }
+  if (issue.type === "utility_assistance" && result.facts.county) {
+  const countyResource =
+    utilityAssistanceByCounty[
+      result.facts.county as keyof typeof utilityAssistanceByCounty
+    ];
+
+  if (countyResource) {
+    return {
+      ...issue,
+      resource: {
+        ...resource,
+        ...countyResource,
+      },
+    };
+  }
+}
   return {
     ...issue,
     resource,
