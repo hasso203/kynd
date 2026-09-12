@@ -6,6 +6,7 @@ type Result = {
   type: string;
   urgency: number;
   summary: string;
+  evidence: string;
   resource: {
     name: string;
     description: string;
@@ -100,7 +101,9 @@ export default function Home() {
 
                 <h3 className="mt-2 text-2xl font-bold">{result.type}</h3>
 
-                <p className="mt-3 text-slate-300">{result.summary}</p>
+                <p className="mt-3 text-slate-300">{result.summary}</p> <p className="mt-2 text-sm text-slate-400">
+  <strong>Why KYND suggested this:</strong> {result.evidence}
+</p>
 
                 {result.resource && (
   <div>

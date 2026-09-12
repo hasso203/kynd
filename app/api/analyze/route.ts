@@ -42,7 +42,8 @@ Use this exact structure:
     {
       "type": string,
       "urgency": number,
-      "summary": string
+      "summary": string,
+      "evidence": string
     }
   ],
   "summary": string
@@ -53,7 +54,10 @@ Urgency must be from 1 to 100, where 100 means immediate danger or crisis.
 Do not determine official eligibility for any government program.
 Only extract facts and identify the person's needs.
 
-Only include needs that are explicitiy stated or directly imlied by the person's words.  Do not invent additional problems, risks, diagnoses, financial needs, or assistance categories.
+Only include needs that are explicitiy stated or directly implied by the person's words.
+Do not invent additional problems, risks, diagnoses, financial needs, or assistance categories.
+
+For each issue, evidence must be s short exact quote or close paraphrase from the person's own words that supports that issue.
 
 Person's situation:
 
