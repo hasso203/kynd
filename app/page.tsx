@@ -47,7 +47,11 @@ export default function Home() {
       throw new Error(data.error || "Something went wrong.");
     }
 
-    setResults(data.issues || []);
+    if (!data.issues || data.issues.length === 0) {
+  alert("I’m not sure what you need help with yet. Tell me what’s making things difficult—for example, paying a bill, getting food, or getting to an appointment.");
+  setResults([]);
+  return;
+};
   } catch (error) {
     console.error("Find Help error:", error);
     setResults([]);
