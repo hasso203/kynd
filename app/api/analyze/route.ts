@@ -40,7 +40,7 @@ Use this exact structure:
   },
   "issues": [
     {
-      "type": string,
+      "type": "utility_assistance" | "food_assistance" or "medical_transportation",
       "urgency": number,
       "summary": string,
       "evidence": string
