@@ -63,6 +63,21 @@ say:
   url: "https://www.chfs.ky.gov/agencies/dms/member/Pages/Medical-Transportation.aspx",
   phone: "1-800-444-7433",
 },
+ health_coverage: {
+    name: "Kentucky Medicaid",
+    description:
+      "Kentucky Medicaid provides health coverage for eligible Kentuckians.",
+    action:
+      "Apply for health coverage through kynect or call for help with an application.",
+    prepare:
+      "Have identification, household income information, and information about anyone in your household who needs health coverage.",
+    say:
+      "I need health insurance and would like help finding out if I qualify for Medicaid.",
+    phone: "1-855-306-8959",
+    url: "https://kynect.ky.gov/",
+    source: "Kentucky Cabinet for Health and Family Services",
+    verified: "2026-09-12",
+  },
 };
 export const medicalTransportationByCounty = {
   Pike: {

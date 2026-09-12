@@ -44,7 +44,7 @@ Use this exact structure:
   },
   "issues": [
     {
-      "type": "utility_assistance" | "food_assistance" | "medical_transportation" | "housing_assistance" | "employment_assistance", 
+      "type": "utility_assistance" | "food_assistance" | "medical_transportation" | "housing_assistance" | "employment_assistance" | "health_coverage", 
       "urgency": number,
       "summary": string,
       "evidence": string
