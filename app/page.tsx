@@ -96,10 +96,16 @@ export default function Home() {
                 className="rounded-2xl border border-slate-700 bg-slate-900 p-6"
               >
                 <div className="text-sm font-bold tracking-wider text-blue-400">
-                  {result.urgency}
+                  {result.urgency >= 70
+  ? "High Priority"
+  : result.urgency >= 40
+    ? "Medium Priority"
+    : "Lower Priority"}
                 </div>
 
-                <h3 className="mt-2 text-2xl font-bold">{result.type}</h3>
+                <h3 className="mt-2 text-2xl font-bold">
+  {result.type.replaceAll("_", " ").replace(/\b\w/g, (letter) => letter.toUpperCase())}
+</h3>
 
                 <p className="mt-3 text-slate-300">{result.summary}</p> <p className="mt-2 text-sm text-slate-400">
   <strong>Why KYND suggested this:</strong> {result.evidence}
