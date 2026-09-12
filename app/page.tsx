@@ -79,6 +79,7 @@ export default function Home() {
           />
           <button
   type="button"
+  onClick={() => window.speechSynthesis.speak(new SpeechSynthesisUtterance("Tell us what's happening. Use your own words. When you're finished, select Find Help."))}
   className="mt-4 w-full rounded-xl border border-white/30 px-6 py-5 text-2xl font-semibold"
 >
   🔊 READ THIS TO ME
