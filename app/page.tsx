@@ -23,6 +23,7 @@ export default function Home() {
   const [story, setStory] = useState("");
   const [results, setResults] = useState<Result[]>([]);
   const [loading, setLoading] = useState(false);
+  const [currentResult, setCurrentResult] = useState(0);
 
  async function findHelp() {
   setLoading(true);
@@ -100,7 +101,7 @@ export default function Home() {
 
             {[...results]
   .sort((a, b) => b.urgency - a.urgency)
-  .slice(0, 1)
+  .slice(currentResult, currentResult + 1)
   .map((result) => (
               <div
                 key={result.type}
@@ -165,6 +166,14 @@ export default function Home() {
        MORE INFORMATION
     </a>
   </div>
+)}
+{currentResult < results.length - 1 && (
+  <button
+    onClick={() => setCurrentResult(currentResult + 1)}
+    className="mt-4 block rounded-xl bg-blue-600 px-8 py-4 text-xl font-bold"
+  >
+    NEXT NEED →
+  </button>
 )}
 <button
   onClick={() => setResults([])}
