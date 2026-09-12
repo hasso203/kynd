@@ -7,6 +7,7 @@ type Result = {
   urgency: number;
   summary: string;
   evidence: string;
+  needsCounty?: boolean;
   resource: {
     name: string;
     description: string;
@@ -122,7 +123,19 @@ export default function Home() {
                 <h3 className="mt-2 text-4xl font-bold">
   {result.type.replaceAll("_", " ").replace(/\b\w/g, (letter) => letter.toUpperCase())}
 </h3>
+{result.needsCounty && (
+  <div className="mt-5 rounded-xl bg-blue-950 p-5 text-xl font-semibold">
+    <p>📍 Tell us your Kentucky county so we can find the right local office for you.</p>
 
+    <button
+      type="button"
+      onClick={() => setResults([])}
+      className="mt-4 rounded-xl bg-white px-6 py-3 text-lg font-bold text-slate-950"
+    >
+      ADD MY COUNTY
+    </button>
+  </div>
+)}
                 <p className="mt-4 text-slate-300">{result.summary}</p> <p className="mt-4 text-sm text-slate-400">
   <strong>Why KYND suggested this:</strong> {result.evidence}
 </p>
