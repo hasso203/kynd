@@ -20,6 +20,19 @@ say: "I need help applying for food assistance and would like to ask about SNAP.
 phone: "1-855-306-8959",
     url: "https://kynect.ky.gov/",
   },
+  housing_assistance: {
+  name: "Kentucky Housing Corporation Rental Assistance Resources",
+  description:
+    "Kentucky Housing Corporation provides rental assistance resources and connects Kentuckians with housing programs that may fit their situation.",
+  action:
+    "Use Kentucky Housing Corporation's Rental Assistance Resources page to find housing help that matches your situation.",
+  prepare:
+    "Have your lease, rent amount, household income information, and any eviction or late-rent notices available if you have them.",
+  say:
+    "I need help with my rent or housing and would like to know what assistance may be available.",
+  phone: "1-800-633-8896",
+  url: "https://www.kyhousing.org/page/rental-assistance-resources",
+},
 medical_transportation: {
   name: "Kentucky Medicaid Medical Transportation",
   description:
