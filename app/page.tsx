@@ -27,6 +27,7 @@ export default function Home() {
 
  async function findHelp() {
   setLoading(true);
+  setCurrentResult(0);
 
   try {
     const response = await fetch("/api/analyze", {
